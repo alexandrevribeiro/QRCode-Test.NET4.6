@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using QRCoder;
 
 namespace QRCodeTest.Controllers
 {
@@ -29,6 +30,27 @@ namespace QRCodeTest.Controllers
 
         public IActionResult Error()
         {
+            return View();
+        }
+
+        public IActionResult QRCode()
+        {
+            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+            {
+                using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(Guid.NewGuid().ToString(), QRCodeGenerator.ECCLevel.Q))
+                {
+                    //using (SvgQRCode qrCode = new SvgQRCode(qrCodeData))
+                    //{                    
+                    //    var img = qrCode.GetGraphic(20);                        
+                    //}
+                }
+            }
+
+            //QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            //QRCodeData qrCodeData = qrGenerator.CreateQrCode(Guid.NewGuid().ToString(), QRCodeGenerator.ECCLevel.Q);
+            //QRCode qrCode = new QRCode(qrCodeData);
+            //Bitmap qrCodeImage = qrCode.GetGraphic(20);
+
             return View();
         }
     }
