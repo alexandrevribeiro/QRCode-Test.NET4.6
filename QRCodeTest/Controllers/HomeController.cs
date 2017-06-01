@@ -11,7 +11,7 @@ namespace QRCodeTest.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View("QRCode");
         }
 
         public IActionResult About()
