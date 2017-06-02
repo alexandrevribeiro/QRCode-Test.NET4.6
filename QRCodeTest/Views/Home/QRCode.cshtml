@@ -7,3 +7,6 @@
 @ViewBag.Image
 <hr />
 <img src="data:image/png;base64, @ViewBag.ImageAsBase64" style="width: 250px; height: 250px;" alt="QRCode" />
+
+<br />
+@Html.Raw(ViewBag.ImageAsSvg)

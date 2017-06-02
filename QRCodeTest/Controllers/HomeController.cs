@@ -33,7 +33,7 @@ namespace QRCode_Test.NET4._6.Controllers
             return View();
         }
 
-        public ActionResult QRCode(string text = null)
+        public ActionResult QRCode(string text = null, int size = 20)
         {
             text = text ?? Guid.NewGuid().ToString();
 
@@ -43,7 +43,12 @@ namespace QRCode_Test.NET4._6.Controllers
                 {
                     using (var qrCode = new Base64QRCode(qrCodeData))
                     {
-                        ViewBag.ImageAsBase64 = qrCode.GetGraphic(20);
+                        ViewBag.ImageAsBase64 = qrCode.GetGraphic(size);
+                    }
+
+                    using (var qrCode = new SvgQRCode(qrCodeData))
+                    {
+                        ViewBag.ImageAsSvg = qrCode.GetGraphic(20);
                     }
                 }
             }
